@@ -48,7 +48,7 @@ export default function Play() {
 
     const gameOver = async () => {
         setLost(true);
-        let res = await fetch("/api/gameover", {
+        await fetch("/api/gameover", {
             method: "POST",
             body: JSON.stringify({ score: total })
         });
