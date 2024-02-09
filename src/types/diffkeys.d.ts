@@ -1,0 +1,1 @@
+declare type DiffKeys = "easy" | "medium" | "hard";
