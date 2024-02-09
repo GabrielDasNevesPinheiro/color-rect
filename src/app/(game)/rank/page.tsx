@@ -60,7 +60,7 @@ export default function Ranking() {
 
                         <div className=" flex flex-col h-full w-full p-3 space-y-2">
                             {players.length > 0 ? players.map((player, i) => (
-                                <div className="flex justify-between w-full h-10 bg-black/80 rounded-md pl-2 items-center">
+                                <div className="flex justify-between w-full h-10 bg-black/80 rounded-md pl-2 items-center" key={i}>
                                     <div className="flex space-x-2 items-center">
                                         <span className="text-2xl font-bold">{i + 1}</span>
                                         <Image src={player.image as string} width={30} height={30} alt="Ranking Profile photo" className="rounded-full" />
