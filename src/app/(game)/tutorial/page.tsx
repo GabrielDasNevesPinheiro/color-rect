@@ -20,11 +20,11 @@ export default function Tutorial() {
 
     useEffect(() => {
         setHints([
-            <h1 className="text-4xl">Color Rect é um jogo de <strong className="text-green-500">resposta rápida</strong>.</h1>,
+            <h1 className="text-4xl" key={"presentation"}>Color Rect é um jogo de <strong className="text-green-500">resposta rápida</strong>.</h1>,
 
-            <h1 className="text-4xl">Você deve clicar no botão com a <strong className="text-blue-400">cor</strong> que preenche o <strong className="text-blue-400">texto</strong>.</h1>,
+            <h1 className="text-4xl" key={"game rule"}>Você deve clicar no botão com a <strong className="text-blue-400">cor</strong> que preenche o <strong className="text-blue-400">texto</strong>.</h1>,
 
-            <div className="flex flex-col items-center space-y-4">
+            <div className="flex flex-col items-center space-y-4" key={"game tutorial"}>
                 <h1 className="text-4xl">Caso você se depare com o texto</h1><ColorHeader color={"Laranja"}>Amarelo</ColorHeader>
                 <span className="text-3xl">Você deve selecionar</span>
 
@@ -38,7 +38,7 @@ export default function Tutorial() {
                 </div>
             </div>,
 
-            <div className="flex flex-col space-y-4 text-center">
+            <div className="flex flex-col space-y-4 text-center" key={"timer tutorial"}>
                 <h1 className="text-4xl">Fique de olho no <strong className="text-purple-500">cronômetro</strong>!</h1>
                 <h2 className="text-4xl">Se ele zerar você <strong className="text-red-500">perde</strong>,</h2>
                 <h2 className="text-4xl">Ele <strong className="text-green-500">reseta</strong> sempre que você acerta.</h2>
@@ -49,11 +49,11 @@ export default function Tutorial() {
 
             </div>,
 
-            <div className="flex flex-coll">
+            <div className="flex flex-coll" key={"gamemodes tutorial"}>
                 <h1 className="text-4xl">Existem <strong className="text-orange-500">dificuldades</strong>, elas modificam o <strong className="text-purple-500">cronômetro</strong> e a <strong className="text-yellow-500">pontuação</strong>.</h1>
             </div>,
 
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4" key={"ending"}>
                 <h1 className="text-3xl">Você já está pronto(a)</h1>
                 <Button size={"lg"} onClick={() => menu()}>Menu</Button>
             </div>
