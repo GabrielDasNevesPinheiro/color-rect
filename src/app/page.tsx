@@ -30,7 +30,7 @@ export default function Home() {
           <h1 className="text-4xl">Selecione uma dificuldade</h1>
           <div className="flex space-x-4">
             {Object.keys(GameRules).map((key) => (
-              <Button onClick={() => play(key as DiffKeys)}>{GameRules[key as DiffKeys].name}</Button>
+              <Button onClick={() => play(key as DiffKeys)} key={key}>{GameRules[key as DiffKeys].name}</Button>
             ))
             }
           </div>
