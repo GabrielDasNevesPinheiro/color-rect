@@ -14,7 +14,7 @@ export default function Home() {
   const [diffselect, setDiffSelect] = useState(false);
 
   const router = useRouter();
-  const play = (diff: "easy" | "medium" | "hard") => router.push(`/rect?mode=${diff}`);
+  const play = (diff: "easy" | "medium" | "hard") => router.push(`/rect/${diff}`);
   const rank = () => router.push("/rank");
   const login = () => router.push("/signin");
 
