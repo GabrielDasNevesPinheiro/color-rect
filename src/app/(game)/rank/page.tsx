@@ -1,32 +1,43 @@
 "use client";
 
 import { UserData } from "@/app/api/player/route";
-import { RankingData } from "@/app/api/ranking/route";
+import { getPlayer, getRanking } from "@/app/server/ranking";
 import Button from "@/components/ui/Button";
-import { ArrowLeft, Trophy } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowLeft, Loader2Icon, Trophy } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Ranking() {
 
+
     const router = useRouter();
     const { data: session, status } = useSession();
-    const [players, setPlayers] = useState<RankingData[]>([]);
     const [self, setSelf] = useState<UserData>();
+
+    const { data: ranking, isLoading } = useQuery({
+        queryKey: ['ranking'],
+        queryFn: async () => {
+            const res = await getRanking();
+
+            return res
+        }
+    });
+
+    const { data: user, isLoading: isPlayerLoading } = useQuery({
+        queryKey: ['player'],
+        queryFn: async () => {
+            const res = await getPlayer(session?.user?.email as string);
+
+            return res.data;
+        }
+    })
+
 
     const menu = () => router.push("/");
 
-    useEffect(() => {
-        fetch("/api/ranking").then((res) => res.json().then((response: { status: number, players: RankingData[] }) => {
-            setPlayers(response.players);
-        }))
-
-        fetch("/api/player").then((res) => res.json().then((response: { status: string, player: UserData }) => {
-            setSelf(response.player);
-        }))
-    }, []);
 
     if (status === "loading") return <></>;
 
@@ -40,16 +51,20 @@ export default function Ranking() {
                         <div className="h-72 overflow-hidden">
                             <div className="absolute flex items-center p-2 bg-black/30 rounded-md">
                                 <Trophy />
-                                <span className="font-bold">{self?.position}°</span>
+                                <span className="font-bold">{user?.player?.position}°</span>
                             </div>
                             <Image src={session?.user?.image as string} alt={"Profile Photo"} width={50} height={50} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex flex-col justify-center items-center h-full">
+                            {isPlayerLoading ?
+                                <div><Loader2Icon className="animate-spin" /></div>
+                                :
+                                <></>}
                             <div className="p-4">
-                                <h1 className="font-bold text-4xl">{self?.name}</h1>
+                                <h1 className="font-bold text-4xl">{user?.player?.name}</h1>
                             </div>
                             <div className="p-4">
-                                <h1 className="font-bold text-4xl">{self?.score} Pontos</h1>
+                                <h1 className="font-bold text-4xl">{user?.player?.score + " Pontos"} </h1>
                             </div>
                         </div>
                     </div>
@@ -58,8 +73,13 @@ export default function Ranking() {
                             <h1 className="text-3xl font-bold ">Melhores jogadores</h1>
                         </div>
 
-                        <div className=" flex flex-col h-full w-full p-3 space-y-2">
-                            {players.length > 0 ? players.map((player, i) => (
+                        <div className=" flex flex-col h-full w-full p-3 space-y-2 items-center">
+                            {isLoading ?
+                                <div><Loader2Icon className="animate-spin" /></div>
+                                :
+                                <></>
+                            }
+                            {ranking?.data?.length as number > 0 ? ranking?.data?.map((player, i) => (
                                 <div className="flex justify-between w-full h-10 bg-black/80 rounded-md pl-2 items-center" key={i}>
                                     <div className="flex space-x-2 items-center">
                                         <span className="text-2xl font-bold">{i + 1}</span>
