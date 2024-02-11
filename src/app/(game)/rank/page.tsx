@@ -64,7 +64,7 @@ export default function Ranking() {
                                 <h1 className="font-bold text-4xl">{user?.player?.name}</h1>
                             </div>
                             <div className="p-4">
-                                <h1 className="font-bold text-4xl">{user?.player?.score + " Pontos"} </h1>
+                                <h1 className="font-bold text-4xl">{user?.player?.score} </h1>
                             </div>
                         </div>
                     </div>
