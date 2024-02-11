@@ -7,7 +7,6 @@ import { GameRules, colorNames } from "@/util/game";
 import { ArrowLeft, TimerIcon, TrophyIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useRouter as useQueryRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
 
 export default function Play({ params }: { params: { mode: DiffKeys } }) {
