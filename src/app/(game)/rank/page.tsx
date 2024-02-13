@@ -15,7 +15,6 @@ export default function Ranking() {
 
     const router = useRouter();
     const { data: session, status } = useSession();
-    const [self, setSelf] = useState<UserData>();
 
     const { data: ranking, isLoading } = useQuery({
         queryKey: ['ranking'],
