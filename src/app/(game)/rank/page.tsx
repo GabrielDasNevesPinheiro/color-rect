@@ -45,7 +45,7 @@ export default function Ranking() {
     return (
         <div className="flex flex-col h-screen w-full">
             <Button variant={"ghost"} size={"sm"} onClick={menu}><ArrowLeft /> Menu</Button>
-            <div className="flex w-full h-full p-28">
+            <div className="flex w-full h-full md:p-28 p-4">
                 <div className="md:flex w-full h-full md:space-x-4 space-y-4 md:space-y-0">
                     <div className="flex flex-col rounded-md h-full md:w-1/4 min-w-80 bg-[#2B2B2B] overflow-hidden">
                         <div className="h-72 overflow-hidden">
