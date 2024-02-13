@@ -172,10 +172,10 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
                     <div className="grid grid-rows-3 grid-cols-2 md:grid-cols-3 md:grid-rows-2 rounded-xl overflow-hidden">
                         {!lost ?
                             colorNames.map((colorName, i) => (
-                                <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} className="" />
+                                <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} className="h-40 w-40 md:h-52 md:w-52" />
                             )) :
                             colorNames.map((colorName, i) => (
-                                <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} className="" />
+                                <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} className="h-40 w-40 md:h-52 md:w-52" />
                             ))
                         }
                     </div>

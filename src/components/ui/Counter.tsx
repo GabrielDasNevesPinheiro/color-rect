@@ -16,8 +16,8 @@ export default function Counter({ children }: { children: React.ReactNode }) {
     }, [children]);
 
     return (
-        <div className='absolute w-full h-screen bg-black/60 flex items-center justify-center text-9xl'>
-            <motion.div ref={scope}>
+        <div className='absolute w-full h-full  flex items-center justify-center text-9xl'>
+            <motion.div ref={scope} className='bg-black/60 w-32 h-32 text-center rounded-xl'>
                 <span>{children}</span>
             </motion.div>
         </div>
