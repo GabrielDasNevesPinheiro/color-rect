@@ -27,7 +27,7 @@ export default function Home() {
     <div className="h-screen w-full flex justify-center ">
       {diffselect ?
         <div className="flex flex-col space-y-4 absolute h-full w-full bg-black/90 items-center justify-center">
-          <h1 className="text-4xl">Selecione uma dificuldade</h1>
+          <h1 className="md:text-4xl text-2xl">Selecione uma dificuldade</h1>
           <div className="flex space-x-4">
             {Object.keys(GameRules).map((key) => (
               <Button onClick={() => play(key as DiffKeys)} key={key}>{GameRules[key as DiffKeys].name}</Button>
