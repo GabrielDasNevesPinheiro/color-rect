@@ -168,7 +168,7 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
                 </div>
 
                 {/* Generic Color Pad */}
-                <div className="flex w-full justify-center md:pt-16 pt-10">
+                <div className="flex w-full justify-center md:pt-16 pt-6">
                     <div className="grid grid-rows-3 grid-cols-2 md:grid-cols-3 md:grid-rows-2 rounded-xl overflow-hidden">
                         {!lost ?
                             colorNames.map((colorName, i) => (
@@ -183,7 +183,7 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
 
                 {/* Timer Component */}
                 <div className="flex w-full items-center justify-center">
-                    <div className={cn(timer < 1.0 ? "text-red-500 animate-pulse" : "", "flex items-center space-x-2 pt-8")}>
+                    <div className={cn(timer < 1.0 ? "text-red-500 animate-pulse" : "", "flex items-center space-x-2 md:pt-8 pt-2")}>
                         <TimerIcon size={90} />
                         <p className="text-7xl">{Math.abs(timer).toFixed(1)}</p>
                     </div>
