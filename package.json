@@ -13,6 +13,7 @@
     "@types/mongoose": "^5.11.97",
     "class-variance-authority": "^0.7.0",
     "cn": "^0.1.1",
+    "framer-motion": "^11.0.3",
     "lucide-react": "^0.314.0",
     "mongoose": "^8.1.1",
     "next": "14.1.0",
