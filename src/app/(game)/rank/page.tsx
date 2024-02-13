@@ -23,7 +23,8 @@ export default function Ranking() {
             const res = await getRanking();
 
             return res
-        }
+        },
+        staleTime: 60 * 1000
     });
 
     const { data: user, isLoading: isPlayerLoading } = useQuery({
