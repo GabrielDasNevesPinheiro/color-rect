@@ -3,6 +3,8 @@
 import Button from "@/components/ui/Button";
 import { ColorHeader } from "@/components/ui/ColorHeader";
 import { Colorpad } from "@/components/ui/Colorpad";
+import Counter from "@/components/ui/Counter";
+import { cn } from "@/lib/utils";
 import { GameRules, colorNames } from "@/util/game";
 import { ArrowLeft, TimerIcon, TrophyIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -116,79 +118,77 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
 
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
 
-            <div className="w-full h-screen">
-                {/** Initial timer */}
-                {initialCooldown > 0 ?
-                    <div className="absolute w-full h-screen bg-black/60 flex items-center justify-center text-9xl">
-                        <span>{initialCooldown}</span>
-                    </div> :
-                    <></>
-                }
-                {/** Displays on lose game */}
-                {lost ?
-                    <div className="absolute max-h-96 m-auto left-0 right-0 top-0 bottom-0 flex justify-center">
-                        <div className="flex h-80 w-96 bg-black/90 rounded-md p-4 flex-col gap-y-5 shadow-lg">
-                            <h1 className="text-4xl text-center">Game over</h1>
-                            <div className="self-center flex flex-col">
-                                <span>Pontos: {score}</span>
-                                <span>Acertos: {sequence}</span>
-                                <span>Ganhos totais: {total}</span>
-                            </div>
-                            <div className="flex flex-col gap-y-2">
-                                <Button onClick={menu}>Menu</Button>
-                                <Button onClick={play}>Jogar novamente</Button>
-                                <Button onClick={rank}>Rank</Button>
-                            </div>
+        <div className="w-full h-screen">
+            {/** Initial timer */}
+            {initialCooldown > 0 ?
+                <Counter>
+                    {initialCooldown}
+                </Counter> :
+                <></>
+            }
+            {/** Displays on lose game */}
+            {lost ?
+                <div className="absolute max-h-96 m-auto left-0 right-0 top-0 bottom-0 flex justify-center">
+                    <div className="flex h-80 w-96 bg-black/90 rounded-md p-4 flex-col gap-y-5 shadow-lg">
+                        <h1 className="text-4xl text-center">Game over</h1>
+                        <div className="self-center flex flex-col">
+                            <span>Pontos: {score}</span>
+                            <span>Acertos: {sequence}</span>
+                            <span>Ganhos totais: {total}</span>
                         </div>
-                    </div>
-                    : <></>
-                }
-                <div className="flex flex-col w-full h-full items-center">
-                    <div className="flex justify-between w-full p-4">
-
-                        {/* Button to back to <menu type="toolbar"></menu> */}
-                        <Button variant={"ghost"} size={"sm"} onClick={menu}><ArrowLeft /> Menu</Button>
-
-                        {/** Color to Click component */}
-                        <ColorHeader color={colorNames[sortedColor] as ColorVariant}>{
-                            started ? sortedWord : "Iniciando..."
-                        }</ColorHeader>
-
-                        {/* Score component */}
-                        <div className="flex flex-col">
-                            <div className="flex space-x-2 font-bold items-center">
-                                <TrophyIcon size={30} />
-                                <p className="text-xl">{score}</p>
-                            </div>
-                            <h3 className="text-xl">{session?.user?.name}</h3>
-                        </div>
-                    </div>
-
-                    {/* Generic Color Pad */}
-                    <div className="flex w-full justify-center pt-16">
-                        <div className="grid grid-rows-3 grid-cols-2 md:grid-cols-3 md:grid-rows-2 rounded-xl overflow-hidden">
-                            {!lost ?
-                                colorNames.map((colorName, i) => (
-                                    <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} />
-                                )) :
-                                colorNames.map((colorName, i) => (
-                                    <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} />
-                                ))
-                            }
-                        </div>
-                    </div>
-
-                    {/* Timer Component */}
-                    <div className="flex w-full items-center justify-center">
-                        <div className="flex items-center space-x-2 pt-8">
-                            <TimerIcon size={90} />
-                            <p className="text-7xl">{Math.abs(timer).toFixed(1)}</p>
+                        <div className="flex flex-col gap-y-2">
+                            <Button onClick={menu}>Menu</Button>
+                            <Button onClick={play}>Jogar novamente</Button>
+                            <Button onClick={rank}>Rank</Button>
                         </div>
                     </div>
                 </div>
+                : <></>
+            }
+            <div className="flex flex-col w-full h-full items-center">
+                <div className="flex justify-between w-full p-4">
+
+                    {/* Button to back to <menu type="toolbar"></menu> */}
+                    <Button variant={"ghost"} size={"sm"} onClick={menu}><ArrowLeft /> Menu</Button>
+
+                    {/** Color to Click component */}
+                    <ColorHeader color={colorNames[sortedColor] as ColorVariant}>{
+                        started ? sortedWord : "Iniciando..."
+                    }</ColorHeader>
+
+                    {/* Score component */}
+                    <div className="flex flex-col">
+                        <div className="flex space-x-2 font-bold items-center">
+                            <TrophyIcon size={30} />
+                            <p className="text-xl">{score}</p>
+                        </div>
+                        <h3 className="text-xl">{session?.user?.name}</h3>
+                    </div>
+                </div>
+
+                {/* Generic Color Pad */}
+                <div className="flex w-full justify-center pt-16">
+                    <div className="grid grid-rows-3 grid-cols-2 md:grid-cols-3 md:grid-rows-2 rounded-xl overflow-hidden">
+                        {!lost ?
+                            colorNames.map((colorName, i) => (
+                                <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} />
+                            )) :
+                            colorNames.map((colorName, i) => (
+                                <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} />
+                            ))
+                        }
+                    </div>
+                </div>
+
+                {/* Timer Component */}
+                <div className="flex w-full items-center justify-center">
+                    <div className={cn(timer < 1.0 ? "text-red-500 animate-pulse" : "", "flex items-center space-x-2 pt-8")}>
+                        <TimerIcon size={90} />
+                        <p className="text-7xl">{Math.abs(timer).toFixed(1)}</p>
+                    </div>
+                </div>
             </div>
-        </Suspense>
+        </div>
     )
 }
