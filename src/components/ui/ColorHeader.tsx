@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, useEffect } from "react";
+import { motion, useAnimate } from 'framer-motion';
 
 const colorheaderVariants = cva(
     'font-bold',
@@ -36,8 +37,26 @@ const colors = {
     "Laranja": "text-[#FD5B00]"
 }
 
-export const ColorHeader: FC<ColorpadProps> = ({ className, color, children, variant, size, ...props }) => (
-    <h1 className={cn(colorheaderVariants({ variant, size, className }), colors[color])} {...props}>
-        {children}
-    </h1>
-)
+export const ColorHeader: FC<ColorpadProps> = ({ className, color, children, variant, size, ...props }) => {
+    const [scope, animate] = useAnimate();
+    const doAnimation = async () => {
+
+        await animate(scope.current, { scale: 0.8 }, { duration: 0.0 });
+        await animate(scope.current, { scale: 1.0 }, { duration: 0.5, ease: "anticipate" });
+    }
+
+    useEffect(() => {
+
+        doAnimation();
+
+    }, [color]);
+
+    return (<div>
+        <motion.div ref={scope}>
+            <h1 className={cn(colorheaderVariants({ variant, size, className }), colors[color])} {...props}>
+                {children}
+            </h1>
+        </motion.div>
+    </div>)
+
+}
