@@ -14,7 +14,7 @@ const colorheaderVariants = cva(
             size: {
                 default: 'text-7xl',
                 sm: 'text-4xl',
-                lg: 'text-6xl'
+                lg: 'text-6xl',
             },
         },
         defaultVariants: {
