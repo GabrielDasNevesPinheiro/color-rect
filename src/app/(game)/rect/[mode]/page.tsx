@@ -147,35 +147,35 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
                 : <></>
             }
             <div className="flex flex-col w-full h-full items-center">
-                <div className="flex justify-between w-full p-4">
+                <div className="flex justify-between w-full md:p-4">
 
                     {/* Button to back to <menu type="toolbar"></menu> */}
                     <Button variant={"ghost"} size={"sm"} onClick={menu}><ArrowLeft /> Menu</Button>
 
                     {/** Color to Click component */}
-                    <ColorHeader color={colorNames[sortedColor] as ColorVariant}>{
+                    <ColorHeader className="md:text-7xl text-4xl" color={colorNames[sortedColor] as ColorVariant}>{
                         started ? sortedWord : "Iniciando..."
                     }</ColorHeader>
 
                     {/* Score component */}
                     <div className="flex flex-col">
-                        <div className="flex space-x-2 font-bold items-center">
+                        <div className="flex space-x-2 pr-2 md:pr-0 font-bold items-center">
                             <TrophyIcon size={30} />
                             <p className="text-xl">{score}</p>
                         </div>
-                        <h3 className="text-xl">{session?.user?.name}</h3>
+                        <h3 className="text-xl hidden md:block">{session?.user?.name}</h3>
                     </div>
                 </div>
 
                 {/* Generic Color Pad */}
-                <div className="flex w-full justify-center pt-16">
+                <div className="flex w-full justify-center md:pt-16 pt-10">
                     <div className="grid grid-rows-3 grid-cols-2 md:grid-cols-3 md:grid-rows-2 rounded-xl overflow-hidden">
                         {!lost ?
                             colorNames.map((colorName, i) => (
-                                <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} />
+                                <Colorpad key={i} onClick={() => padClick(colorName)} color={colorName as ColorVariant} className="" />
                             )) :
                             colorNames.map((colorName, i) => (
-                                <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} />
+                                <Colorpad key={i} color={colorName as ColorVariant} variant={"ghost"} className="" />
                             ))
                         }
                     </div>
