@@ -16,6 +16,7 @@ export default function Home() {
   const router = useRouter();
   const play = (diff: "easy" | "medium" | "hard") => router.push(`/rect/${diff}`);
   const rank = () => router.push("/rank");
+  const practice = () => router.push("/practice");
   const login = () => router.push("/signin");
 
   const textColors = ["text-[#36B042]", "text-[#2CABE1]", "text-[#E0FB38]", "text-[#9F36B0]", "text-[#C32B2B]", "text-[#FD5B00]"];
@@ -50,6 +51,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col w-full gap-3 pr-12 pl-12 pt-10">
             <Button onClick={() => setDiffSelect(true)} size={"lg"}>Jogar</Button>
+            <Button onClick={practice} size={"lg"}>Praticar</Button>
             <Button onClick={rank} size={"lg"}>Ranking</Button>
             <Link href={"/tutorial"} className="self-end text-white/50">como jogar?</Link>
           </div>
