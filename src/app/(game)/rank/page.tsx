@@ -46,14 +46,17 @@ export default function Ranking() {
         <div className="flex flex-col h-screen w-full">
             <Button variant={"ghost"} size={"sm"} onClick={menu}><ArrowLeft /> Menu</Button>
             <div className="flex w-full h-full md:p-28 p-4">
-                <div className="md:flex w-full h-full md:space-x-4 space-y-4 md:space-y-0">
+                <div className="md:flex w-full md:h-full h-96 md:space-x-4 space-y-4 md:space-y-0">
                     <div className="flex flex-col rounded-md h-full md:w-1/4 min-w-80 bg-[#2B2B2B] overflow-hidden">
                         <div className="h-72 overflow-hidden">
                             <div className="absolute flex items-center p-2 bg-black/30 rounded-md">
                                 <Trophy />
                                 <span className="font-bold">{user?.player?.position}°</span>
                             </div>
-                            <Image src={session?.user?.image as string} alt={"Profile Photo"} width={50} height={50} className="w-full h-full object-cover" />
+                            <figure className="w-full h-full">
+                                <img src={`${session?.user?.image}?size=512`} alt={"Profile Photo"} width={50} height={50} className="w-full h-full object-cover" />
+                                <figcaption>{session?.user?.name}</figcaption>
+                            </figure>
                         </div>
                         <div className="flex flex-col justify-center items-center h-full">
                             {isPlayerLoading ?
