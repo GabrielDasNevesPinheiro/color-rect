@@ -35,3 +35,15 @@ export const GameRules: { [key in DiffKeys]: Difficulty } = {
 }
 
 export const colorNames: ColorVariant[] = ["Verde", "Azul", "Amarelo", "Roxo", "Vermelho", "Laranja"];
+
+export const sortColor = () => {
+    return Math.floor(Math.random() * (colorNames.length));
+}
+
+export const sortWord = (sortedWord: ColorVariant = "Amarelo") => {
+
+    const filtered = colorNames.filter((word) => word !== sortedWord);
+    const index = Math.floor(Math.random() * (filtered.length));
+    return filtered[index];
+
+};

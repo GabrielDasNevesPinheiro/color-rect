@@ -5,7 +5,7 @@ import { ColorHeader } from "@/components/ui/ColorHeader";
 import { Colorpad } from "@/components/ui/Colorpad";
 import Counter from "@/components/ui/Counter";
 import { cn } from "@/lib/utils";
-import { GameRules, colorNames } from "@/util/game";
+import { GameRules, colorNames, sortColor, sortWord } from "@/util/game";
 import { ArrowLeft, TimerIcon, TrophyIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -34,18 +34,6 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
     const [sortedWord, setSortedWord] = useState("");
     const [total, setTotal] = useState(0);
 
-
-    const sortColor = () => {
-        return Math.floor(Math.random() * (colorNames.length));
-    }
-
-    const sortWord = () => {
-
-        const filtered = colorNames.filter((word) => word !== sortedWord);
-        const index = Math.floor(Math.random() * (filtered.length));
-        return filtered[index];
-
-    };
 
     const gameOver = async () => {
         setLost(true);
