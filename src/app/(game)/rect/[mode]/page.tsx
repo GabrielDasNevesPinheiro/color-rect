@@ -36,13 +36,13 @@ export default function Play({ params }: { params: { mode: DiffKeys } }) {
 
 
     const sortColor = () => {
-        return Math.floor(Math.random() * (colorNames.length - 1));
+        return Math.floor(Math.random() * (colorNames.length));
     }
 
     const sortWord = () => {
 
         const filtered = colorNames.filter((word) => word !== sortedWord);
-        const index = Math.floor(Math.random() * (filtered.length - 1));
+        const index = Math.floor(Math.random() * (filtered.length));
         return filtered[index];
 
     };
