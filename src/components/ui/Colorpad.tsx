@@ -35,7 +35,7 @@ const colors = {
     "Amarelo": "bg-[#E0FB38]",
     "Roxo": "bg-[#9F36B0]",
     "Vermelho": "bg-[#C32B2B]",
-    "Laranja": "bg-[#FD5B00]"
+    "Laranja": "bg-[#f2840f]"
 }
 
 export const Colorpad: FC<ColorpadProps> = ({ className, color, variant, size, ...props }) => (

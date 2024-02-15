@@ -34,7 +34,7 @@ const colors = {
     "Amarelo": "text-[#E0FB38]",
     "Roxo": "text-[#9F36B0]",
     "Vermelho": "text-[#C32B2B]",
-    "Laranja": "text-[#FD5B00]"
+    "Laranja": "text-[#f2840f]"
 }
 
 export const ColorHeader: FC<ColorpadProps> = ({ className, color, children, variant, size, ...props }) => {
